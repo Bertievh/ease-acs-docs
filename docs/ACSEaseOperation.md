@@ -244,7 +244,7 @@ Enter details for Task Type **RSJ**.
 
 ### RSJMULTI Task
 
-![Defining a RSJMULTI Master Job](../static/img/rsl-multi.png)
+![Defining a RSJMULTI Master Job](../static/img/rsj-multi.png)
 1.  Open Solution Manager.
 2.  From the Home page select **Library**
 3.  From the ***Administration*** Menu select **Master Jobs**.
