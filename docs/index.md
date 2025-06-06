@@ -53,16 +53,22 @@ Provides the following task types.
 
 Task Type                | Description
 -------------------------|-------------------------------------
+COPY-DATA-TO-LTRFILE     | Copy outgoing Data File to Letter Files for FTP
 COPY-RENAME-LTRFILE-OUT  | Copy or Rename Letter File for FTP
 COPY-RPT-OUT             | Copy Report to Letter Files for FTP
+FILEPERMS                | Update Letter File Privileges to 774
+MONITOR                  | File Monitor for Incoming File       
+MOVE-LTRFILE-TO-DATA     | Move incoming Letter File to Data Files
+PROMPT                   | Answer a Single Prompt               
+PROMPTSEQ                | Answer a Single Prompt with a SEQ    
 RUN-FTP-OUT              | FTP Letter File off Symitar      
 RENAME-LTRFILE-IN        | Rename Letter File Removing Prefix   
-MONITOR                  | File Monitor for Incoming File       
-PROMPTSEQ                | Answer a Single Prompt with a SEQ    
-PROMPT                   | Answer a Single Prompt               
 RESET                    | Reset a Single Prompt                
 RSJ                      | Run Symitar Job (single-threaded)    
-RSJMULTI                 | Run Symitar Job (multi-threaded)     
 RSJEDIT                  | Runs Symitar Job with Edit File      
-SEQ                      | Collect the SEQ of a Report          
+RSJMULTI                 | Run Symitar Job (multi-threaded)     
+SEQ                      | Collect the SEQ of a Report  
+SEQ-SEND                 | Copy Specified SEQ to Reports for FTP
+TRANSLATE2COMMAS         | Answer a Single Prompt containing commas
+
 
