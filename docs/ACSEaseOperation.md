@@ -3,15 +3,15 @@ slug: '/'
 sidebar_label: 'ACSEase Operation'
 ---
 
-# ACSEase Operation
+# ACS Ease Operation
 
 Once the sma.acs.ACSEase plugin has been registered with the OpCon system, it will be possible to perform agent and task definitions.
 All definitions can only be performed using Solution Manager.
 
-## Defining ACSEase connection
+## Defining ACS Ease connection
 
 The Agent definition is define the connection between your local OpCon system and the target Ease DataCenter OpCon system. 
-This is done by adding a new ACSease Agent definition using Solution Manager. 
+This is done by adding a new ACS Ease Agent definition using Solution Manager. 
 
 Items defined in red are required values (note : global properties are supported). 
 
@@ -23,10 +23,10 @@ Items defined in red are required values (note : global properties are supported
 4.  Select **+Add** to add a new agent definition.
 5.  Fill in the agent details
     - Insert a unique name for the connection.
-    - Select **ACSEase** from the **Type** drop-down list.
+    - Select **ACS Ease** from the **Type** drop-down list.
     - Select **General Settings**
     - Check that the NetCom Name is set to **Default** or the SMA Relay name if Relay is being used. 
-    - Select **ACSEase Settings**
+    - Select **ACS Ease Settings**
     - In the **Customer Id** field enter customer number provided by the Ease DataCenter.
     - In the **Retain Log Files** field enter a value defining the number of days to retain log files (default is 30 days).
     - In the **Ease DataCenter** section
@@ -38,7 +38,7 @@ Items defined in red are required values (note : global properties are supported
 
 ## Defining tasks
 
-The ACSEase Connection supports the following task types:
+The ACS Ease Connection supports the following task types:
 
 Task Type                | Description
 -------------------------|-------------------------------------
@@ -73,7 +73,7 @@ tasks.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **COPY-DATA-TO-LTRFILE : Copy outgoing Data File to Letter Files for FTP** from the **Task Type** drop-down list.
     
 Enter details for Task Type **COPY-DATA-TO-LTRFILE**. 
@@ -96,7 +96,7 @@ Enter details for Task Type **COPY-DATA-TO-LTRFILE**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **COPY-RENAME-LTRFILE-OUT : Copy or Rename Letter File for FTP** from the **Task Type** drop-down list.
     
 Enter details for Task Type **COPY-RENAME-LTRFILE-OUT**. 
@@ -120,7 +120,7 @@ Enter details for Task Type **COPY-RENAME-LTRFILE-OUT**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **COPY-RPT-OUT : Copy Report to Letter Files for FTP** from the **Task Type** drop-down list.
     
 Enter details for Task Type **COPY-RPT-OUT**. 
@@ -142,7 +142,7 @@ Enter details for Task Type **COPY-RPT-OUT**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **FILEPERMS : Update Letter File Privileges to 774** from the **Task Type** drop-down list.
     
 Enter details for Task Type **FILEPERMS**. 
@@ -164,7 +164,7 @@ Enter details for Task Type **FILEPERMS**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **MONITOR : File Monitor for Incoming File** from the **Task Type** drop-down list.
     
 Enter details for Task Type **MONITOR**. 
@@ -186,7 +186,7 @@ Enter details for Task Type **MONITOR**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **MOVE-LTRFILE-TO-DATA : Move incoming Letter File to Data Files** from the **Task Type** drop-down list.
     
 Enter details for Task Type **MOVE-LTRFILE-TO-DATA**. 
@@ -209,7 +209,7 @@ Enter details for Task Type **MOVE-LTRFILE-TO-DATA**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **PROMPT : Answer a Single Prompt** from the **Task Type** drop-down list.
     
 Enter details for Task Type **PROMPT**. 
@@ -233,7 +233,7 @@ Enter details for Task Type **PROMPT**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **PROMPTSEQ : Answer a Single Prompt with a SEQ** from the **Task Type** drop-down list.
     
 Enter details for Task Type **PROMPTSEQ**. 
@@ -256,7 +256,7 @@ Enter details for Task Type **PROMPTSEQ**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **RUN-FTP-OUT : FTP Letter File off Symitar** from the **Task Type** drop-down list.
     
 Enter details for Task Type **RUN-FTP-OUT**. 
@@ -303,7 +303,7 @@ Enter details for Task Type **RENAME-LTRFILE-IN**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **RSJ : Run Symitar Job (single-threaded)** from the **Task Type** drop-down list.
     
 Enter details for Task Type **RSJ**. 
@@ -324,7 +324,7 @@ Enter details for Task Type **RSJ**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **RSJEDIT :Runs Symitar Job with Edit File** from the **Task Type** drop-down list.
     
 Enter details for Task Type **RSJEDIT**. 
@@ -347,7 +347,7 @@ Enter details for Task Type **RSJEDIT**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **RSJMULTI : Run Symitar Job (multi-threaded)** from the **Task Type** drop-down list.
     
 Enter details for Task Type **RSJMULTI**. 
@@ -369,7 +369,7 @@ Enter details for Task Type **RSJMULTI**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **SEQ : Collect the SEQ of a Report** from the **Task Type** drop-down list.
     
 Enter details for Task Type **SEQ**. 
@@ -392,7 +392,7 @@ Enter details for Task Type **SEQ**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **SEQ-SEND : Copy Specified SEQ to Reports for FTP** from the **Task Type** drop-down list.
     
 Enter details for Task Type **SEQ-SEND**. 
@@ -414,7 +414,7 @@ Enter details for Task Type **SEQ-SEND**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the drop-down list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** drop-down list.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
     - Select **TRANSLATE2COMMAS : Answer a Single Prompt containing commas** from the **Task Type** drop-down list.
     
 Enter details for Task Type **STRANSLATE2COMMAS**. 

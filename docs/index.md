@@ -23,19 +23,19 @@ JORS support for the ACS environment is only provided through Solution Manager.
 
 ## Implementation
 
-Ease ACS comprises of the ACSEase environment which is a set of plugins that are copied to the ..\OpConxps\SAM\plugins folder of an on-prem
+Ease ACS comprises of the ACS Ease environment which is a set of plugins that are copied to the ..\OpConxps\SAM\plugins folder of an on-prem
 OpCon environment or the ..\SAMRelay\plugins folder of a on-prem SMA Relay installation.
 
-The ACSEase module provides the various screen definitions and execution code to manage ACSEase task types. Solution Manager is used to define the
+The ACS Ease module provides the various screen definitions and execution code to manage ACS Ease task types. Solution Manager is used to define the
 connection to the Ease DataCenter OpCon system as well as ACSEase task types which are stored in a schedule in the customer OpCon system.
 
 ![Overview](../static/img/Overview.png)
 
 During task execution, the ACSEase task on the customer OpCon system uses the OpCon Rest-API capabilities to inject tasks into their defined schedule in the Ease DataCenter OpCon system. The submitted tasks are monitored for completion and when complete, the job logs of the Ease DataCenter task are retrieved and appended to the job log of the customer ACSEase task.
 
-## ACSEase
+## ACS Ease
 
-THe connection information is entered when defining the ACSEase Connection. Each connection is a associated with a target schedule in the Ease DataCenter. Therefore if multiple target schedules are required, multiple ACSEase connections will be required.
+The connection information is entered when defining the ACSEase Connection. Each connection is a associated with a target schedule in the Ease DataCenter. Therefore if multiple target schedules are required, multiple ACSEase connections will be required.
 
 The implementation includes the retrieval of the job logs of the Tasks executing in the Ease DataCenter and appending the information to the local job log. This means that it is not necessary to access the Ease DataCenter environment to view job logs.
 
