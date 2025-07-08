@@ -1,7 +1,7 @@
 module.exports = {
   mySidebar: [
     'index',
-    'ACSEase Operation',
+    'ACSEaseOperation',
     'release notes',
   ],
 };
