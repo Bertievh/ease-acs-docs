@@ -3,7 +3,7 @@ slug: '/'
 sidebar_label: 'EASE ACS'
 ---
 
-Latest version is 25.0.0
+Latest version is 25.0.1
 
 Ease ACS provides direct Rest-API access to applications without the need for the installation of additional components.
 It is part of the ACS (Agentless Connector System) suite of products. 
@@ -53,6 +53,9 @@ Provides the following task types.
 
 Task Type                | Description
 -------------------------|-------------------------------------
+BUNDLE-RSJEDIT           | MONITOR and RSJEDIT tasks
+BUNDLE-SEQ-FTP           | SEQ, COPY-RPT-OUT and RUN-FTP-OUT tasks
+BUNDLE-SEQ-PROMPT        | SEQ and PROMPT tasks
 COPY-DATA-TO-LTRFILE     | Copy outgoing Data File to Letter Files for FTP
 COPY-RENAME-LTRFILE-OUT  | Copy or Rename Letter File for FTP
 COPY-RPT-OUT             | Copy Report to Letter Files for FTP
