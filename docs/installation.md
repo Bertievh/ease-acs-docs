@@ -11,12 +11,12 @@ Select the required version.
 
 - Unzip the ACSEase.zip file.
 - On-prem customers 
-  Copy the sma.acs.ACSEase.xxx files to the \\SAM\\plugins directory
+  Copy the ACSEase directory to the \\SAM\\plugins directory
 - Cloud customers
-  Copy the sma.acs.ACSEase.xxx files to the \\Relay\\plugins directory
+  Copy the ACSEase directory to the \\Relay\\plugins directory
 
 Version 25.0.1
-- Use Deploy to insert the EASE-LOCAL.json into the local OpCon system.
+- Use Deploy to insert the workflow \\workflows\\EASE-LOCAL.json into the local OpCon system.
   
   - Edit the EASE-LOCAL.json file 
     - changing the primary machine name to match the target OpCon system.
