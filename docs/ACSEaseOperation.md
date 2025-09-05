@@ -7,14 +7,23 @@ sidebar_label: 'ACSEase Operation'
 Once the sma.acs.ACSEase plugin has been registered with the OpCon system, it will be possible to perform agent and task definitions.
 All definitions can only be performed using Solution Manager.
 
+The implementation of the bundle task types requires the installation of the EASE-LOCAL, EASE-LOCAL-BUNDLE-RSJEDIT, EASE-BUNDLE-SEQ-FTP and EASE-BUNDLE-SEQ-PROMPT schedules in the local OpCon System.
+
+The EASE-LOCAL schedule contains container jobs that are used to inject the EASE-LOCAL-BUNDLE-RSJEDIT, EASE-BUNDLE-SEQ-FTP and EASE-BUNDLE-SEQ-PROMPT sub-schedules. The sub-schedules contain ACS Ease tasks to execute the sequence of tasks within the selected bundled request. Each task in the subschedule is submitted to the Ease Datacenter for execution. It is possible to view the individual joblogs of these tasks as well as restart the individual tasks should this be required.
+
+After inserting the schedules in the local OpCon system, the tasks in the sub-schedules should be updated to match the Ease Agent and an all days frequency definition available on the local OpCon system.  
+
 ## Defining ACS Ease connection
 
-The Agent definition is define the connection between your local OpCon system and the target Ease DataCenter OpCon system. 
+The Agent definition defines the OpCon Rest-API connections to your local OpCon system and the target Ease DataCenter OpCon system.
+ 
 This is done by adding a new ACS Ease Agent definition using Solution Manager. 
 
 Items defined in red are required values (note : global properties are supported). 
 
 ![Defining a Connection](../static/img/agent.png)
+
+![Defining a Connection](../static/img/agent1.png)
 
 1.  Open Solution Manager.
 2.  From the Home page select **Library**
@@ -29,9 +38,14 @@ Items defined in red are required values (note : global properties are supported
     - In the **Customer Id** field enter customer number provided by the Ease DataCenter.
     - In the **Retain Log Files** field enter a value defining the number of days to retain log files (default is 30 days).
     - In the **Ease DataCenter** section
-        - In the **Ease URL** filed enter the host and port number provided by the Ease DataCenter (host:port).
+        - In the **Ease URL** field enter the host and port number provided by the Ease DataCenter (host:port).
         - In the **Ease User** field enter the user name provided by the Ease DataCenter.
         - In the **Ease User Password** filed enter the password associated with the provided Ease User.  
+        - In the **Local DataCenter** section
+        - In the **OpCon URL** filed enter the host and port number of the local OpCon system (host:port).
+        - In the **User** field enter the user name for the local OpCon system.
+        - In the **User Password** filed enter the password associated with the local OpCon User.  
+
 6.  Save the definition changes. 
 7.  Start the connection by selecting the **Change Communication Status** button and selecting **Enable Full Comm.**. 
 
@@ -41,6 +55,9 @@ The ACS Ease Connection supports the following task types:
 
 Task Type                | Description
 -------------------------|-------------------------------------
+BUNDLE-RSJEDIT           | MONITOR and RSJEDIT tasks
+BUNDLE-SEQ-FTP           | SEQ, COPY-RPT-OUT and RUN-FTP-OUT tasks
+BUNDLE-SEQ-PROMPT        | SEQ and PROMPT tasks
 COPY-DATA-TO-LTRFILE     | Copy outgoing Data File to Letter Files for FTP
 COPY-RENAME-LTRFILE-OUT  | Copy or Rename Letter File for FTP
 COPY-RPT-OUT             | Copy Report to Letter Files for FTP
@@ -61,6 +78,78 @@ TRANSLATE2COMMAS         | Answer a Single Prompt containing commas
 
 Defining tasks only requires providing the values associated with the specific task. It is possible to use global properties when defining
 tasks.
+
+### BUNDLE-RSJEDIT Task
+
+![Defining a BUNDLE-RSJEDIT Master Job](../static/img/bundle-rsjedit.png)
+1.  Open Solution Manager.
+2.  From the Home page select **Library**
+3.  From the ***Administration*** Menu select **Master Jobs**.
+4.  Select **+Add** to add a new master job definition.
+5.  Fill in the task details.
+    - Select the **Schedule** name from the drop-down list.
+    - In the **Name** field enter a unique name for the task within the schedule.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
+    - Select **BUNDLE-RSJEDIT : MONITOR and RSJEDIT tasks** from the **Task Type** drop-down list.
+
+Enter details for Task Type **BUNDLE-RSJEDIT**. 
+
+1.  Select the **Task Details** button.
+2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
+3.  In the **TaskConfiguration** section
+    - In the **Identifier** field enter a unique identifier for the task.
+    - In the **Job Name** field enter the the name of the RSJ job associated with the RSJ task.
+    - In the **Monitor File** field enter the monitor file name associated with the MONITOR task.
+    - In the **Edit File** field enter the edit file name associated with the RSJ task.
+4.  Save the definition changes. 
+
+### BUNDLE-SEQ-FTP Task
+
+![Defining a BUNDLE-SEQ-FTP Master Job](../static/img/bundle-seq-ftp.png)
+1.  Open Solution Manager.
+2.  From the Home page select **Library**
+3.  From the ***Administration*** Menu select **Master Jobs**.
+4.  Select **+Add** to add a new master job definition.
+5.  Fill in the task details.
+    - Select the **Schedule** name from the drop-down list.
+    - In the **Name** field enter a unique name for the task within the schedule.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
+    - Select **BUNDLE-SEQ-FTP : SEQ, COPY-RPT-OUT and RUN-FTP-OUT tasks** from the **Task Type** drop-down list.
+
+Enter details for Task Type **BUNDLE-SEQ-FTP**. 
+
+1.  Select the **Task Details** button.
+2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
+3.  In the **TaskConfiguration** section
+    - In the **Identifier** field enter a unique identifier for the task.
+    - In the **Job Name** field enter the the name of the RSJ job associated with the SEQ task.
+    - In the **Output File** field enter the output file name associated with the COPY-RPT-OUT and RUN-FTP-OUT tasks.
+    - In the **Email** field enter an email address that will receive notification when the transfer is complete.
+4.  Save the definition changes. 
+
+### BUNDLE-SEQ-PROMPT Task
+
+![Defining a BUNDLE-SEQ-PROMPT Master Job](../static/img/bundle-seq-prompt.png)
+1.  Open Solution Manager.
+2.  From the Home page select **Library**
+3.  From the ***Administration*** Menu select **Master Jobs**.
+4.  Select **+Add** to add a new master job definition.
+5.  Fill in the task details.
+    - Select the **Schedule** name from the drop-down list.
+    - In the **Name** field enter a unique name for the task within the schedule.
+    - Select **ACS Ease** from the **Job Type** drop-down list.
+    - Select **BUNDLE-SEQ-PROMPT : SEQ, and PROMPT tasks** from the **Task Type** drop-down list.
+
+Enter details for Task Type **BUNDLE-SEQ-PROMPT**. 
+
+1.  Select the **Task Details** button.
+2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
+3.  In the **TaskConfiguration** section
+    - In the **Identifier** field enter a unique identifier for the task.
+    - In the **Job Name** field enter the the name of the RSJ job associated with the SEQ task.
+    - In the **Prompt Job Name** field enter the name of the RSJ job associated with this PROMPTSEQ task.
+    - In the **Prompt** field enter prompt to submit.
+4.  Save the definition changes. 
 
 ### COPY-DATA-TO-LTRFILE Task
 
