@@ -3,5 +3,6 @@ module.exports = {
     'index',
     'ACSEaseOperation',
     'release notes',
+	'migration',
   ],
 };

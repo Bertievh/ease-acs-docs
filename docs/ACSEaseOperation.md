@@ -13,6 +13,9 @@ The EASE-LOCAL schedule contains container jobs that are used to inject the EASE
 
 After inserting the schedules in the local OpCon system, the tasks in the sub-schedules should be updated to match the Ease Agent and an all days frequency definition available on the local OpCon system.  
 
+The Ease Agent definition contains a **Debug** option which should be selected when doing trouble shooting. Selecting this field will log
+all information (request and response) to the executing tasks job log. 
+
 ## Defining ACS Ease connection
 
 The Agent definition defines the OpCon Rest-API connections to your local OpCon system and the target Ease DataCenter OpCon system.
@@ -33,7 +36,7 @@ Items defined in red are required values (note : global properties are supported
     - Insert a unique name for the connection.
     - Select **ACS Ease** from the **Type** drop-down list.
     - Select **General Settings**
-    - Check that the NetCom Name is set to **Default** or the SMA Relay name if Relay is being used. 
+    - Check that the NetCom Name is set to **\<Default\>** or the SMA Relay name if Relay is being used. 
     - Select **ACS Ease Settings**
     - In the **Customer Id** field enter customer number provided by the Ease DataCenter.
     - In the **Retain Log Files** field enter a value defining the number of days to retain log files (default is 30 days).
@@ -47,7 +50,10 @@ Items defined in red are required values (note : global properties are supported
         - In the **User Password** filed enter the password associated with the local OpCon User.  
 
 6.  Save the definition changes. 
-7.  Start the connection by selecting the **Change Communication Status** button and selecting **Enable Full Comm.**. 
+7.  Select **Communication Settings**
+    Ensure that the **Requires XML Escape Sequences: User-Defined** field is set to **True**. 
+    I not change the field and save the definition changes.
+8.  Start the connection by selecting the **Change Communication Status** button and selecting **Enable Full Comm.**. 
 
 ## Defining tasks
 
