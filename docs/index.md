@@ -3,7 +3,7 @@ slug: '/'
 sidebar_label: 'EASE ACS'
 ---
 
-Latest version is 25.0.1
+Latest version is 25.0.2
 
 Ease ACS provides direct Rest-API access to applications without the need for the installation of additional components.
 It is part of the ACS (Agentless Connector System) suite of products. 
