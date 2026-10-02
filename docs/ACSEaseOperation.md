@@ -15,22 +15,22 @@ sidebar_label: 'ACS Ease Operation'
 Once the sma.acs.ACSEase connector is registered with the OpCon system, you can define agents and tasks.
 All definitions must be created in Solution Manager.
 
-Bundle task types require the EASE-LOCAL, EASE-LOCAL-BUNDLE-RSJEDIT, EASE-BUNDLE-SEQ-FTP, and EASE-BUNDLE-SEQ-PROMPT schedules to be installed on the local OpCon system.
+Bundle task types require the EASE-LOCAL, EASE-LOCAL-BUNDLE-RSJEDIT, EASE-LOCAL-BUNDLE-SEQ-FTP, and EASE-LOCAL-BUNDLE-SEQ-PROMPT schedules to be installed on the local OpCon system.
 
-The EASE-LOCAL schedule contains container jobs that inject the EASE-LOCAL-BUNDLE-RSJEDIT, EASE-BUNDLE-SEQ-FTP, and EASE-BUNDLE-SEQ-PROMPT sub-schedules. The sub-schedules contain ACS Ease tasks to run the task sequence for the selected bundle. Each task is submitted to the Ease DataCenter for execution. You can view individual job logs and restart individual tasks if needed.
+The EASE-LOCAL schedule contains container jobs that inject the EASE-LOCAL-BUNDLE-RSJEDIT, EASE-LOCAL-BUNDLE-SEQ-FTP, and EASE-LOCAL-BUNDLE-SEQ-PROMPT sub-schedules. The sub-schedules contain ACS Ease tasks to run the task sequence for the selected bundle. Each task is submitted to the Ease DataCenter to run. You can view individual job logs and restart individual tasks if needed.
 
 After inserting the schedules, update the sub-schedule tasks to reference the correct Ease agent and an all-days frequency.
 
-The agent definition contains a **Debug** option for troubleshooting. When selected, all request and response data is logged to the task job log.
+The agent definition contains a **Debug Mode** option for troubleshooting. When selected, all request and response data is logged to the task job log, including the sign-in responses and session tokens for both OpCon systems.
 
 - Use this page to define an ACS Ease agent connection to the Ease DataCenter and create ACS Ease task definitions in Solution Manager.
-- Use the bundle task types when a single Ease operation requires executing a sequence of tasks, such as RSJ, MONITOR, SEQ, or FTP operations.
+- Use the bundle task types when a single Ease operation requires running a sequence of tasks, such as RSJ, MONITOR, SEQ, or FTP operations.
 
 ## Defining ACS Ease connection
 
 The agent definition configures the OpCon Rest-API connections to your local OpCon system and the Ease DataCenter.
 
-Fields shown in red are required. Global properties are supported.
+Global properties are supported.
 
 ![Defining a Connection](../static/img/agent.png)
 
@@ -51,13 +51,16 @@ To define an ACS Ease connection, complete the following steps:
     - In the **Customer Id** field enter customer number provided by the Ease DataCenter.
     - In the **Retain Log Files** field enter a value defining the number of days to retain log files (default is 30 days).
     - In the **Ease DataCenter** section
+        - In the **Ease Schedule Name** field enter the name of the schedule defined for your customer Id at the Ease DataCenter.
         - In the **Ease URL** field enter the host and port number provided by the Ease DataCenter (host:port).
         - In the **Ease User** field enter the user name provided by the Ease DataCenter.
-        - In the **Ease User Password** filed enter the password associated with the provided Ease User.  
-        - In the **Local DataCenter** section
-        - In the **OpCon URL** filed enter the host and port number of the local OpCon system (host:port).
+        - In the **Ease User Password** field enter the password associated with the provided Ease User.
+    - In the **Local Datacenter** section
+        - In the **Schedule Name** field enter the name of the local schedule that contains the bundle container jobs (for example, EASE-LOCAL).
+        - In the **OpCon URL** field enter the host and port number of the local OpCon system (host:port).
         - In the **User** field enter the user name for the local OpCon system.
-        - In the **User Password** filed enter the password associated with the local OpCon User.  
+        - In the **User Password** field enter the password associated with the local OpCon User.
+    - Select **Debug Mode** only when troubleshooting.
 
 6.  Select **Save**.
 7.  Select **Communication Settings**. Verify that the **Requires XML Escape Sequences: User-Defined** field is set to **True**. If it is not, set the field to **True** and select **Save**.
@@ -65,32 +68,37 @@ To define an ACS Ease connection, complete the following steps:
 
 ## Configuration options
 
-The following settings are available when defining an ACS Ease agent. Fields marked as required must be populated before the connection can be enabled. Global properties are supported for all value fields.
+The following settings are available when defining an ACS Ease agent. The Ease DataCenter values are needed to submit tasks, and the Local Datacenter values are needed for bundle tasks and for the SEQ task's local property. Global properties are supported for all value fields.
 
 | Setting | What It Does | Default | Notes |
 |---|---|---|---|
-| **Customer Id** | The customer number allocated by the Ease DataCenter | — | Required |
+| **Customer Id** | The customer number allocated by the Ease DataCenter | — | — |
 | **Retain Log Files** | Number of days to retain connector log files | 30 | — |
-| **Ease URL** | Host and port of the Ease DataCenter OpCon Rest-API | — | Format: `host:port`. Required |
-| **Ease User** | User name allocated by the Ease DataCenter | — | Required |
-| **Ease User Password** | Password for the Ease DataCenter user | — | Required |
-| **OpCon URL** | Host and port of the local OpCon system | — | Format: `host:port`. Required |
-| **User** | User name for the local OpCon system | — | Required |
-| **User Password** | Password for the local OpCon user | — | Required |
+| **Ease Schedule Name** | The schedule defined for your customer Id at the Ease DataCenter, into which single tasks are injected | — | — |
+| **Ease URL** | Host and port of the Ease DataCenter OpCon Rest-API | — | Format: `host:port` |
+| **Ease User** | User name allocated by the Ease DataCenter | — | — |
+| **Ease User Password** | Password for the Ease DataCenter user | — | — |
+| **Schedule Name** (Local Datacenter) | The local schedule, such as EASE-LOCAL, into which bundle tasks inject their container jobs | — | Needed for bundle tasks |
+| **OpCon URL** | Host and port of the local OpCon system | — | Format: `host:port` |
+| **User** | User name for the local OpCon system | — | — |
+| **User Password** | Password for the local OpCon user | — | — |
 | **NetCom Name** | The SMANetCom or SMA Relay instance managing this connection | `<Default>` | Set to the SMA Relay name if using a Relay installation |
 | **Requires XML Escape Sequences: User-Defined** | Controls XML encoding for task payloads | — | Must be set to **True** |
-| **Debug** | Logs all request and response data to the task job log | Off | Enable only during troubleshooting |
+| **Debug Mode** | Logs all request and response data, including sign-in tokens, to the task job log | Off | Enable only during troubleshooting |
 
 ## Exception handling
 
 **The agent does not connect after selecting Enable Full Comm.**
-Enable the **Debug** option on the agent definition and retry the connection. Review the task job log for request and response details to identify the cause of the failure. Verify that the Ease URL and OpCon URL values are correct and reachable from the OpCon server.
+Enable the **Debug Mode** option on the agent definition and retry the connection. Review the task job log for request and response details to identify the cause of the failure. Verify that the Ease URL and OpCon URL values are correct and reachable from the OpCon server.
+
+**A task fails at once with "Daily Schedule ... ON HOLD", "WAITING" or "COMPLETE exiting".**
+The target schedule for today is on hold, has not started, or has already finished. Release or rebuild the schedule (the **Ease Schedule Name** at the Ease DataCenter for single tasks, the local **Schedule Name** for bundle tasks) and rerun the task. See [When a task runs](#when-a-task-runs).
 
 **Tasks submitted to the Ease DataCenter fail or return unexpected results.**
 Verify that the **Requires XML Escape Sequences: User-Defined** field in **Communication Settings** is set to **True**. If not, update the field, save the agent definition, and resubmit the task.
 
-**Bundle tasks fail to execute.**
-Verify that the EASE-LOCAL, EASE-LOCAL-BUNDLE-RSJEDIT, EASE-BUNDLE-SEQ-FTP, and EASE-BUNDLE-SEQ-PROMPT schedules are installed on the local OpCon system. Verify that the tasks in each sub-schedule reference the correct Ease agent and have an all-days frequency definition assigned.
+**Bundle tasks fail to run.**
+Verify that the EASE-LOCAL, EASE-LOCAL-BUNDLE-RSJEDIT, EASE-LOCAL-BUNDLE-SEQ-FTP, and EASE-LOCAL-BUNDLE-SEQ-PROMPT schedules are installed on the local OpCon system. Verify that the tasks in each sub-schedule reference the correct Ease agent and have an all-days frequency definition assigned.
 
 ## Defining tasks
 
@@ -122,6 +130,18 @@ TRANSLATE2COMMAS         | Answer a Single Prompt containing commas
 Defining tasks only requires providing the values associated with the specific task. It is possible to use global properties when defining
 tasks.
 
+### When a task runs
+
+When an ACS Ease task starts, the connector checks today's daily schedule, using the date of the server that runs SMANetCom or the relay. Single tasks use the **Ease Schedule Name** at the Ease DataCenter, and bundle tasks use the local **Schedule Name**. If that schedule is not in the daily tables, or is on hold, waiting or finished OK, the task fails at once.
+
+The connector then injects a job into that schedule and follows it. The task finishes when the injected job finishes OK, and fails when the injected job fails or is cancelled. For any other status, the task keeps running.
+
+The **Identifier** is optional for every task type except SEQ. It is sent with the injected job so that several instances of the same task type can run at the same time.
+
+:::caution
+Killing an ACS Ease job in OpCon does not stop the job at the Ease DataCenter, or the bundle's container job on the local system. Stop it there if needed.
+:::
+
 ### BUNDLE-RSJEDIT Task
 
 ![Defining a BUNDLE-RSJEDIT Master Job](../static/img/bundle-rsjedit.png)
@@ -141,7 +161,7 @@ Enter details for Task Type **BUNDLE-RSJEDIT**.
 2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
 3.  In the **TaskConfiguration** section
     - In the **Identifier** field enter a unique identifier for the task.
-    - In the **Job Name** field enter the the name of the RSJ job associated with the RSJ task.
+    - In the **Job Name** field enter the  name of the RSJ job associated with the RSJ task.
     - In the **Monitor File** field enter the monitor file name associated with the MONITOR task.
     - In the **Edit File** field enter the edit file name associated with the RSJ task.
 4.  Select **Save**. The task definition is saved.
@@ -165,9 +185,10 @@ Enter details for Task Type **BUNDLE-SEQ-FTP**.
 2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
 3.  In the **TaskConfiguration** section
     - In the **Identifier** field enter a unique identifier for the task.
-    - In the **Job Name** field enter the the name of the RSJ job associated with the SEQ task.
+    - In the **Job Name** field enter the name of the RSJ job associated with the SEQ task.
+    - In the **Report Name** field enter the report name associated with the SEQ task.
     - In the **Output File** field enter the output file name associated with the COPY-RPT-OUT and RUN-FTP-OUT tasks.
-    - In the **Email** field enter an email address that will receive notification when the transfer is complete.
+    - In the **Email** field enter an email address that receives notification when the transfer is complete.
 4.  Select **Save**. The task definition is saved.
 
 ### BUNDLE-SEQ-PROMPT Task
@@ -189,7 +210,8 @@ Enter details for Task Type **BUNDLE-SEQ-PROMPT**.
 2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
 3.  In the **TaskConfiguration** section
     - In the **Identifier** field enter a unique identifier for the task.
-    - In the **Job Name** field enter the the name of the RSJ job associated with the SEQ task.
+    - In the **Seq Job Name** field enter the name of the RSJ job associated with the SEQ task.
+    - In the **Report Name** field enter the report name associated with the SEQ task.
     - In the **Prompt Job Name** field enter the name of the RSJ job associated with this PROMPTSEQ task.
     - In the **Prompt** field enter prompt to submit.
 4.  Select **Save**. The task definition is saved.
@@ -282,7 +304,7 @@ Enter details for Task Type **FILEPERMS**.
 2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
 3.  In the **TaskConfiguration** section
     - In the **Identifier** field enter a unique identifier for the task.
-    - In the **File** field enter the letter file name whose privileges will be updated.
+    - In the **File** field enter the letter file name whose privileges are updated.
 4.  Select **Save**. The task definition is saved.
 
 ### MONITOR Task
@@ -349,7 +371,7 @@ Enter details for Task Type **PROMPT**.
 2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
 3.  In the **TaskConfiguration** section
     - In the **Identifier** field enter a unique identifier for the task.
-    - In the **Job Name** field enter the the name of the RSJ job associated with this request.
+    - In the **Job Name** field enter the  name of the RSJ job associated with this request.
     - In the **Prompt** field enter prompt.
     - In the **Response** field enter the response to the associated prompt.
 4.  Select **Save**. The task definition is saved.
@@ -397,7 +419,7 @@ Enter details for Task Type **RUN-FTP-OUT**.
 3.  In the **TaskConfiguration** section
     - In the **Identifier** field enter a unique identifier for the task.
     - In the **Output File** field enter the output file name associated with the task.
-    - In the **Email** field enter an email address that will receive notification when the transfer is complete.
+    - In the **Email** field enter an email address that receives notification when the transfer is complete.
 4.  Select **Save**. The task definition is saved.
 
 ### RENAME-LTRFILE-IN Task
@@ -410,7 +432,7 @@ Enter details for Task Type **RUN-FTP-OUT**.
 5.  Fill in the task details.
     - Select the **Schedule** name from the list.
     - In the **Name** field enter a unique name for the task within the schedule.
-    - Select **ACSEase** from the **Job Type** list.
+    - Select **ACS Ease** from the **Job Type** list.
     - Select **RENAME-LTRFILE-IN : Rename Letter File Removing Prefix** from the **Task Type** list.
     
 Enter details for Task Type **RENAME-LTRFILE-IN**. 
@@ -419,9 +441,31 @@ Enter details for Task Type **RENAME-LTRFILE-IN**.
 2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
 3.  In the **TaskConfiguration** section
     - In the **Identifier** field enter a unique identifier for the task.
-    - select an Action from the **Action** list.
     - In the **Source File** field enter the source file name associated with the task.
     - In the **Output File** field enter the output file name associated with the task.
+4.  Select **Save**. The task definition is saved.
+
+### RESET Task
+
+![Defining a RESET Master Job](../static/img/reset.png)
+1.  Open Solution Manager.
+2.  From the Home page select **Library**
+3.  From the **Administration** Menu select **Master Jobs**.
+4.  Select **+Add** to add a new master job definition.
+5.  Fill in the task details.
+    - Select the **Schedule** name from the list.
+    - In the **Name** field enter a unique name for the task within the schedule.
+    - Select **ACS Ease** from the **Job Type** list.
+    - Select **RESET : Reset a Single Prompt** from the **Task Type** list.
+
+Enter details for Task Type **RESET**.
+
+1.  Select the **Task Details** button.
+2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
+3.  In the **TaskConfiguration** section
+    - In the **Identifier** field enter a unique identifier for the task.
+    - In the **Job Name** field enter the name of the RSJ job associated with this request.
+    - In the **Prompt** field enter the prompt to reset.
 4.  Select **Save**. The task definition is saved.
 
 ### RSJ Task
@@ -442,7 +486,7 @@ Enter details for Task Type **RSJ**.
 1.  Select the **Task Details** button.
 2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
 3.  In the **TaskConfiguration** section
-    - In the **Job Name** field enter the the name of the RSJ job associated with this request.
+    - In the **Job Name** field enter the  name of the RSJ job associated with this request.
 4.  Select **Save**. The task definition is saved.
 
 ### RSJEDIT Task
@@ -508,7 +552,7 @@ Enter details for Task Type **SEQ**.
 1.  Select the **Task Details** button.
 2.  In the **Integration Selection** section, select the primary integration which is an ACSEase connection previously defined.
 3.  In the **TaskConfiguration** section
-    - In the **Identifier** field enter a unique identifier that will be used to create a schedule instance property containing the sequence number on the Ease Datacenter OpCOn environment. Any (.) period or (_) underscore characters are removed and the adjust identier is prefixed with SEQ-. The sequence number value is retrieved from the Ease Datacenter and stored in a global property on the local system. If the Identifier is ABC.DEF then the sequence number will be stored on the local system in a property SEQ-ABCDEF.
+    - In the **Identifier** field enter a unique identifier used to create a schedule instance property containing the sequence number on the Ease Datacenter OpCon environment. Any (.) period or (_) underscore characters are removed and the adjusted identifier is prefixed with SEQ-. The sequence number value is retrieved from the Ease Datacenter and stored in a global property on the local system. If the Identifier is ABC.DEF then the sequence number is stored on the local system in a property SEQ-ABCDEF.
     - In the **Job Name** field enter the name of the RSJ job associated with this request.
     - In the **Report Name** field enter the report name associated with the task.
 4.  Select **Save**. The task definition is saved.
@@ -555,7 +599,7 @@ Enter details for Task Type **TRANSLATE2COMMAS**.
 3.  In the **TaskConfiguration** section
     - In the **Identifier** field enter a unique identifier for the task.
     - In the **Prompt** field enter the prompt value for the job.
-    - In the **Response** field enter the response with (^) that will be converted to commas (,).
+    - In the **Response** field enter the response with (^) that is converted to commas (,).
 4.  Select **Save**. The task definition is saved.
 
 ## Glossary
@@ -564,10 +608,10 @@ Enter details for Task Type **TRANSLATE2COMMAS**.
 
 **Container job** — An OpCon job type that injects a sub-schedule into the daily schedule. Used by the EASE-LOCAL schedule to trigger bundle sub-schedules.
 
-**Ease DataCenter** — The remote OpCon system managed by Ease, to which ACS Ease tasks are submitted for execution. Job logs from Ease DataCenter tasks are retrieved and appended to the local task job log.
+**Ease DataCenter** — The remote OpCon system managed by Ease, to which ACS Ease tasks are submitted to run. Job logs from Ease DataCenter tasks are retrieved and appended to the local task job log.
 
 **EASE-LOCAL** — The local OpCon schedule that contains container jobs used to trigger bundle sub-schedules.
 
-**Sub-schedule** — A schedule triggered by a container job. Sub-schedules contain the individual ACS Ease tasks that execute the sequence of operations within a bundle task type.
+**Sub-schedule** — A schedule triggered by a container job. Sub-schedules contain the individual ACS Ease tasks that run the sequence of operations within a bundle task type.
       
    

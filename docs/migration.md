@@ -22,7 +22,7 @@ Ease bundle tasks are converted from a single task to a sub-schedule of separate
 ## Install conversion utilities
 Download the ACS Ease migration software (`ACSEaseMigration.zip`) from the FTP site `/OpCon Releases/Integrations/Ease/Migration Utility` and extract it into a directory on a Windows system.
 
-Edit `Conversion.config`, setting the required values and encrypting passwords and tokens with `Encrypt.exe`.
+Edit `Conversion.config`, setting the required values and encoding passwords and tokens with `Encrypt.exe`.
 
 ```
 [GENERAL]
@@ -48,23 +48,27 @@ where
 | **DEBUG** | Enables or disables debug logging for the conversion utilities | OFF | Set in the `[GENERAL]` section |
 | **[OPCON]** | Section header identifying the target OpCon system | — | The header name must match the `-opc` argument used in the utilities |
 | **OPCON_API_ADDRESS** | Address and port number of the OpCon Rest-API | — | Required |
-| **OPCON_API_TOKEN** | OpCon application token | — | Must be encrypted using `Encrypt.exe`. Required |
+| **OPCON_API_TOKEN** | OpCon application token | — | Must be encoded using `Encrypt.exe`. Required |
 | **OPCON_PROFILE_NAME** | Profile name for the OpCon connection | OPCONXPS | — |
 | **OPCON_DB_SERVER** | Address of the OpCon database server | — | Required |
 | **OPCON_DB** | OpCon database name | — | Required |
 | **OPCON_DB_USER** | Database user with required privileges to interact with the OpCon database | — | Required |
-| **OPCON_DB_USER_PASSWORD** | Password of the database user | — | Must be encrypted using `Encrypt.exe`. Required |
+| **OPCON_DB_USER_PASSWORD** | Password of the database user | — | Must be encoded using `Encrypt.exe`. Required |
 | **OPCON_USER** | OpCon user with required privileges to interact with schedules | — | Required |
-| **OPCON_USER_PASSWORD** | Password of the OpCon user | — | Must be encrypted using `Encrypt.exe`. Required |
+| **OPCON_USER_PASSWORD** | Password of the OpCon user | — | Must be encoded using `Encrypt.exe`. Required |
 
 ## Encrypt.exe utility
-The `Encrypt.exe` utility uses 64-bit encryption to encrypt text strings. Use it to encrypt all passwords and tokens in `Conversion.config`.
+The `Encrypt.exe` utility encodes text strings so that passwords and tokens are not stored in `Conversion.config` as plain text. Use it for all passwords and tokens in `Conversion.config`.
+
+:::caution
+The encoding is not encryption. Anyone with a copy of `Conversion.config` can decode the values, so restrict access to the file.
+:::
 
 | Argument | What It Does | Default | Notes |
 |---|---|---|---|
-| **-v** | The text string to encrypt | — | Enclose strings with special characters in double quotes. Required |
+| **-v** | The text string to encode | — | Enclose strings with special characters in double quotes. Required |
 
-To encrypt the value `abcdefg`, run:
+To encode the value `abcdefg`, run:
 
 ```
 Encrypt.exe -v "abcdefg"
