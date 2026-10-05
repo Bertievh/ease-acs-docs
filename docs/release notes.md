@@ -16,8 +16,10 @@ It is possible to use this Agent with an on-prem OpCon installation or with a SM
 
 ## Release 25.0.3
 
+Updated mechanism to insert EASE-LOCAL schedules and sub-schedules into OpCon database to use OpCon Rest-API. 
+
 :eight_spoked_asterisk: **CON-1173**: Updated SEQ task type to retrieve SEQ value from the Ease Datacenter and store it in a global property on the local OpCon system.    
-:eight_spoked_asterisk: **CON-1250**: Add log file cleanup logic to TaskProtocol module..
+:eight_spoked_asterisk: **CON-1250**: Add log file cleanup logic to TaskProtocol module.
 
 ## Release 25.0.2
 
