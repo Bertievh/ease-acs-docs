@@ -33,17 +33,17 @@ JORS is only available through Solution Manager.
 
 Ease ACS comprises connectors copied to the `..\OpConxps\SAM\plugins` folder of an on-prem OpCon environment or the `..\SAMRelay\plugins` folder of an on-prem SMA Relay installation.
 
-The ACS Ease module provides screen definitions and execution code for ACS Ease task types. Use Solution Manager to define the Ease DataCenter connection and ACS Ease task types, which are stored in a schedule in your OpCon system.
+The ACS Ease module provides the screen definitions for ACS Ease task types and the code that runs them. Use Solution Manager to define the Ease DataCenter connection and ACS Ease task types, which are stored in a schedule in your OpCon system.
 
 ![Overview](../static/img/Overview.png)
 
-During task execution, the ACS Ease task uses the OpCon Rest-API to inject tasks into the target Ease DataCenter schedule. When the tasks complete, their job logs are retrieved and appended to the local ACS Ease task job log.
+During a task run, the ACS Ease task uses the OpCon Rest-API to inject tasks into the target Ease DataCenter schedule. When the tasks complete, their job logs are retrieved and appended to the local ACS Ease task job log.
 
 ## ACS Ease
 
 Each connection is associated with a target schedule in the Ease DataCenter. If multiple target schedules are required, define a separate connection for each.
 
-Job logs from tasks executing in the Ease DataCenter are retrieved and appended to the local job log. You do not need to access the Ease DataCenter to view job logs.
+Job logs from tasks running in the Ease DataCenter are retrieved and appended to the local job log. You do not need to access the Ease DataCenter to view job logs.
 
 The following connection information is required:
 
@@ -54,6 +54,10 @@ The following connection information is required:
 | Ease URL | The URL provided by the Ease DataCenter to access the target OpCon Rest-API. |
 | Ease User | The Ease user allocated by the Ease Datacenter. |
 | Ease User Password | The password of the allocated Ease user. |
+| Schedule Name (Local Datacenter) | The local schedule, such as EASE-LOCAL, into which bundle tasks inject their container jobs. |
+| OpCon URL | The host and port of the local OpCon Rest-API. |
+| User | The local OpCon user. |
+| User Password | The password of the local OpCon user. |
 
 The following task types are available.
 

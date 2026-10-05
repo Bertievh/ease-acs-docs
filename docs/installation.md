@@ -17,6 +17,13 @@ The EASE ACS connector is a `.dll`-based integration that enables ACS Ease job t
 - Complete this installation to add the ACS Ease job type to an on-prem OpCon system or SMA Relay installation.
 - Follow the version 25.0.1 steps to enable bundle task types (BUNDLE-RSJEDIT, BUNDLE-SEQ-FTP, BUNDLE-SEQ-PROMPT), which require the EASE-LOCAL sub-schedule structure.
 
+## Requirements
+
+- The server that runs SMANetCom or the SMA Relay must have HTTPS access to the Ease DataCenter OpCon Rest-API and to the local OpCon Rest-API.
+- The local OpCon user defined in the agent must be able to add jobs to the local bundle schedule (EASE-LOCAL) and to create global properties, which the SEQ task uses.
+
+## Install
+
 To install the EASE ACS connector, complete the following steps:
 
 1. Download the ACS Ease software from the SMA FTP site. The installer is located at `/OpCon Releases/Integrations/Ease/`. Select the required version.
@@ -24,15 +31,16 @@ To install the EASE ACS connector, complete the following steps:
 3. Copy the `ACSEase` directory to the appropriate location:
    - On-prem installations: Copy to `\SAM\plugins`.
    - Cloud (SMA Relay) installations: Copy to `\Relay\plugins`.
+4. Restart the services: **SMA OpCon Service Manager** and **SMA OpCon RestAPI** for on-prem installations, or the **SMA OpCon Relay** service for SMA Relay installations.
 
 **Version 25.0.1 and later**
 
-4. In Deploy, import the `\workflows\EASE-LOCAL.json` file.
-5. Edit the `EASE-LOCAL.json` file:
+5. In Deploy, import the `\workflows\EASE-LOCAL.json` file.
+6. Edit the `EASE-LOCAL.json` file:
    a. Change the primary machine name to match the target OpCon system.
    b. Change the user ID used to run the tasks.
-6. Import the updated `EASE-LOCAL.json` file into Deploy using the **File Import** function.
-7. Deploy the `EASE-LOCAL` schedule to the target OpCon system. The deployment includes the required sub-schedules.
+7. Import the updated `EASE-LOCAL.json` file into Deploy using the **File Import** function.
+8. Deploy the `EASE-LOCAL` schedule to the target OpCon system. The deployment includes the required sub-schedules.
 
 The EASE ACS connector is installed and ready for configuration.
 
