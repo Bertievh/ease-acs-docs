@@ -25,11 +25,11 @@ Version 25.0.3
 
   The program has five arguments :
 
-    --host-address <host address>           the address of the OpCon system (i.e. PROD - no https, just the name)
-    --host-port <host port>                 the port number of the OpCon Rest-API (i.e. 443)
-    --api-token <token>                     an authentication token for the OpCon API
+    --host-address `<host address>`           the address of the OpCon system (i.e. PROD - no https, just the name)
+    --host-port `<host port>`                the port number of the OpCon Rest-API (i.e. 443)
+    --api-token `<token>`                     an authentication token for the OpCon API
     --sched-name EASE-LOCAL                 the name of the main Ease local schedule to create
-    --ease-agent <ease agent>               the Ease agent to be used
+    --ease-agent `<ease agent>`               the Ease agent to be used
 
 
 Version 25.0.1
